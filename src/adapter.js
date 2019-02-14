@@ -14,8 +14,6 @@ class Adapter {
       data: {
         api_key: API_KEY,
         api_secret: API_SECRET,
-        // enctype: 'multipart/form-data',
-        // return_attributes: "gender",
         return_attributes: "age,gender,smiling,skinstatus,emotion,ethnicity,beauty",
         image_base64: imgBase64
       }
@@ -25,7 +23,6 @@ class Adapter {
   saveImageData(user_id, photoObj) {
     let data = photoObj.faces[0].attributes
     data.user_id = user_id
-    // data.note = inputNote
     return fetch(this.baseURL + "/photo_infos",{
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -62,13 +59,10 @@ class Adapter {
       data: {
         api_key: API_KEY,
         api_secret: API_SECRET,
-        // enctype: 'multipart/form-data',
-        // return_attributes: "gender",
-        // return_attributes: "age,gender,smiling,skinstatus,emotion,ethnicity,beauty",
         image_base64: imgBase64
       }
     })
-}
+  }
 
   addNote(id,inputNote){
 
@@ -77,9 +71,8 @@ class Adapter {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({note:inputNote}), // body data type must match
+        body: JSON.stringify({note:inputNote}),
     }).then(res => res.json())
 
   }
-
 }
